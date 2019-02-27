@@ -25,18 +25,13 @@ class Event_one(Resource):
 
     # The PUT method implementation ---crUd (Update of CRUD)
     def put(self, event_id, event):
-        id_exist = False
 
         for a in event_list:
             if a["id"] == event_id:
                 a.update({'event': event})
-                id_exist = True
                 return jsonify(a)
 
-        if id_exist == False:
-            event_list.append(dict({'id': event_id, 'event': event}))
-            return jsonify(event_list)
-
+        event_list.append(dict({'id': event_id, 'event': event}))
         return jsonify(event_list)
 
     

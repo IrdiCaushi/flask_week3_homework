@@ -26,20 +26,14 @@ class Course_one(Resource):
 
     # The PUT method implementation ---crUd (Update of CRUD)
     def put(self,course_id,name):
-        id_exist = False
 
         for a in course_list:
             if a["id"] == course_id:
                 a.update({'name': name})
-                id_exist = True
                 return jsonify(a)
 
-        if id_exist == False:
-            course_list.append(dict({'id': course_id, 'name': name}))
-            return jsonify(course_list)
-
+        course_list.append(dict({'id': course_id, 'name': name}))
         return jsonify(course_list)
-
     
 
 class Course_two(Resource):

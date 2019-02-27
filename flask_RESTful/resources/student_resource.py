@@ -12,7 +12,6 @@ class Student_one(Resource):
     
     # The POST method implementation  ---Crud (Create of CRUD)               
     def post(self,student_id,name):
-        id_exist = False
         for i in range(len(students_list)):
             if students_list[i-1]['id'] == student_id:
                 id_exist = True
@@ -25,17 +24,12 @@ class Student_one(Resource):
 
     # The PUT method implementation ---crUd (Update of CRUD)
     def put(self,student_id,name):
-        id_exist = False
         for a in students_list:
             if a["id"] == student_id:
                 a.update({'name': name})
-                id_exist = True
                 return jsonify(a)
 
-        if id_exist == False:
-            students_list.append(dict({'id': student_id, 'name': name}))
-            return jsonify(students_list)
-
+        students_list.append(dict({'id': student_id, 'name': name}))
         return jsonify(students_list)
 
 
